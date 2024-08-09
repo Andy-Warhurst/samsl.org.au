@@ -1,36 +1,81 @@
+html,
 body {
-    font-family: Arial, sans-serif;
+    height: 100%;
     margin: 0;
-    padding: 0;
+    line-height: 1.5;
+    color: #121212;
 }
+
+
+/*.container {*/
+/*    display: flex;*/
+/*    min-height: 100vh;*/
+/*    flex-direction: row;*/
+/*}*/
+
 
 .container {
     display: flex;
-    min-height: 100vh;
-    flex-direction: row;
+    justify-content: space-between; /* Adjust as needed: flex-start, flex-end, center, space-around */
+    align-items: center; /* Align items vertically: flex-start, flex-end, center, baseline, stretch */
+    gap: 10px; /* Add space between components if needed */
 }
 
-.navbar {
-    width: 200px;
-    background-color: #333;
-    padding: 20px;
+
+
+.mynavbar {
+    /*width: 200px;*/
+    background-color: #AAAAAA;
+    /*padding: 20px;*/
+    list-style: none; /* Remove bullet points */
+    padding: 5px; /* Remove default padding */
+    margin: 5px; /* Remove default margin */
 }
 
-.navbar ul {
+.mynavbar ul {
     list-style-type: none;
     padding: 0;
 }
 
-.navbar ul li {
+.mynavbar ul li {
     margin: 10px 0;
+    margin-bottom: 10px; /* Space between buttons */
+    font-size: large
 }
 
-.navbar ul li a {
+.mynavbar-link {
+    display: block; /* Make links block elements to stack vertically */
+    padding: 10px 20px;
+    border: none;
+    background-color: #AAAAAA;
     color: white;
     text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
-.navbar ul li a:hover {
+.mynavbar:hover {
+    background-color: #AAAAAA;
+}
+
+.mynavbar.active {
+    background-color: #ffffff;
+}
+
+.mynavbar ul li a {
+    /*color: white;*/
+    /*text-decoration: none;*/
+    display: block; /* Make links block elements to stack vertically */
+    padding: 10px 20px;
+    border: none;
+    background-color: #AAAAAA;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.mynavbar ul li a:hover {
     text-decoration: underline;
 }
 
@@ -41,11 +86,46 @@ body {
 
 footer {
     width: 100%;
-    background-color: #333;
+    background-color: #000066;
     color: white;
     text-align: center;
     padding: 10px 0;
     position: fixed;
     bottom: 0;
     left: 0;
+}
+.App-header {
+    background-color: #000066;
+    min-height: 10vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: navajowhite;
+}
+
+.App-header h2 {
+    /*background-color: yellow;*/
+}
+
+
+.App-logo {
+    height: 8vmin;
+    pointer-events: none;
+    /*background-color: green;*/
+}
+.Header-spacer {
+    min-width: 50px;
+    /*background-color: red;*/
+}
+
+
+
+#sidebar {
+    width: 22rem;
+    background-color: #f7f7f7;
+    border-right: solid 1px #e3e3e3;
+    display: flex;
+    flex-direction: column;
 }
