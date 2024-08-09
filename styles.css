@@ -105,7 +105,8 @@ footer {
     color: navajowhite;
 }
 
-.App-header h2 {
+.App-header table tr td h2 {
+    font-size: calc(24px);
     /*background-color: yellow;*/
 }
 
