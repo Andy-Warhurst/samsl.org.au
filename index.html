@@ -12,7 +12,6 @@
 
 <div>
     <header class="App-header">
-
         <table>
             <tr>
                 <td><div class="Header-spacer" /></td>
@@ -22,24 +21,39 @@
                 <td><div class="Header-spacer" /></td>
             </tr>
         </table>
-
     </header>
 </div>
 
 <div class="container">
     <nav class="mynavbar">
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
+            <li onclick="loadContent('home.html')">Home</li>
+            <li onclick="loadContent('About.html')">About</li>
+            <li onclick="loadContent('Services.html')">Services</li>
+            <li onclick="loadContent('Contact.html')">Contact</li>
         </ul>
     </nav>
-    <main class="content">
-        <h1>Welcome to the SAMSL Website</h1>
-        <p>This is the homepage of South Australian Masters Soccer League.</p>
+
+    <main id="content" >
+        <h2>Welcome</h2>
+        <script>loadContent('home.html')</script>
     </main>
+
 </div>
 <footer>
     <p>&copy; 2024 SAMSL</p>
 </footer>
+
+<script>
+    function loadContent(page) {
+        fetch(page)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('content').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading content:', error));
+    }
+</script>
+
 </body>
 </html>
