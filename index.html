@@ -1,59 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="icon" href="./assets/SAMSL-logo.png" />
     <title>SAMSL 2025</title>
-    <link rel="stylesheet" href="styles.css">
-
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<div>
-    <header class="App-header">
-        <table>
-            <tr>
-                <td> <div class="Header-spacer" /></td>
-                <td><img src="./assets/SAMSL-logo.png" class="App-logo" alt="logo" /></td>
-                <td> <div class="Header-spacer" /></td>
-                <td><h2>The South Australian Masters Soccer League</h2></td>
-                <td> <div class="Header-spacer" /></td>
-            </tr>
-        </table>
-    </header>
-</div>
-
-<div class="container">
-    <nav class="mynavbar">
+<header class="header">
+    <div class="header-container">
+        <img src="./assets/SAMSL-logo.png" alt="SAMSL Logo" class="logo">
+        <h1 class="site-title">South Australian Masters Soccer League</h1>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+        <span class="hamburger"></span>
+    </button>
+    <nav class="navbar">
         <ul>
-            <li onclick="loadContent('Home.html')">Home</li>
-            <li onclick="loadContent('About.html')">About</li>
-            <li onclick="loadContent('Services.html')">Services</li>
-            <li onclick="loadContent('Contact.html')">Contact</li>
-            <li onclick="window.location.href = 'https://ashy-river-0c892fc00.5.azurestaticapps.net/'">Manager</li>
+            <li><a href="#" data-page="Home.html">Home</a></li>
+            <li><a href="#" data-page="About.html">About</a></li>
+            <li><a href="#" data-page="Services.html">Services</a></li>
+            <li><a href="#" data-page="Contact.html">Contact</a></li>
+            <li><a href="https://ashy-river-0c892fc00.5.azurestaticapps.net/">Manager</a></li>
         </ul>
     </nav>
+</header>
 
-    <main id="content" >
-        <h2>Welcome</h2>
-        <script>loadContent('home.html')</script>
-    </main>
+<main id="content"></main>
 
-</div>
-<footer>
-    <p>&copy; 2025 SAMSL</p>
+<footer class="footer">
+    &copy; 2025 SAMSL
 </footer>
 
 <script>
+    // Toggle mobile nav
+    const navToggle = document.querySelector('.nav-toggle');
+    const navbar   = document.querySelector('.navbar');
+    navToggle.addEventListener('click', () => {
+        navbar.classList.toggle('open');
+    });
+
+    // Load page fragments via fetch
     function loadContent(page) {
         fetch(page)
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('content').innerHTML = data;
+            .then(r => r.text())
+            .then(html => {
+                document.getElementById('content').innerHTML = html;
             })
-            .catch(error => console.error('Error loading content:', error));
+            .catch(err => console.error('Error loading content:', err));
     }
+
+    // Hook up nav links
+    document.querySelectorAll('.navbar a[data-page]').forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            const page = link.dataset.page;
+            loadContent(page);
+            // close mobile nav after selection
+            if (navbar.classList.contains('open')) {
+                navbar.classList.remove('open');
+            }
+        });
+    });
+
+    // Initial load
+    window.addEventListener('DOMContentLoaded', () => {
+        loadContent('home.html');
+    });
 </script>
 
 </body>
